@@ -7,8 +7,10 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceFolder}/src/app.js"
+      "name": "Node: Nodemon",
+      "program": "${workspaceFolder}/src/app.js",
+      "restart": true,
+      "protocol": "inspector",
     }
   ]
 }
