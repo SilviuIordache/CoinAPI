@@ -1,0 +1,40 @@
+[
+  {
+    "name": "Food",
+    "items": [
+      {
+        "name": "breakfast",
+        "cost": 3
+      },
+      {
+        "name": "lunch",
+        "cost": 5
+      },
+      {
+        "name": "dinner",
+        "cost": 5
+      }
+    ]
+  },
+  {
+    "name": "Subscriptions",
+    "items": [
+      {
+        "name": "phone",
+        "cost": 3
+      },
+      {
+        "name": "OneDrive",
+        "cost": 5
+      },
+      {
+        "name": "haircut",
+        "cost": 50
+      },
+      {
+        "name": "Spotify",
+        "cost": 50
+      }
+    ]
+  }
+]
