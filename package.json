@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/SilviuIordache/CoinAPI/issues"
   },
-  "homepage": "https://github.com/SilviuIordache/CoinAPI#readme"
+  "homepage": "https://github.com/SilviuIordache/CoinAPI#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
