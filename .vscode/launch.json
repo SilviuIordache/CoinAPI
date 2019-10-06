@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Node: Nodemon",
-      "program": "${workspaceFolder}/src/app.js",
+      "program": "${workspaceFolder}/server.js",
       "restart": true,
       "protocol": "inspector",
     }
