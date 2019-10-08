@@ -1,12 +1,34 @@
 const fs = require('fs');
+
 const fileName = `${__dirname}/../data/expenses.json`;
 const expenses = JSON.parse(fs.readFileSync(fileName));
 
+exports.checkID = (req, res, next, val) => {
+  console.log(`Expense id is: ${val}`);
+  if (req.params.id * 1 > expenses.length) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Invalid id'
+    });
+  }
+  next();
+};
+
+exports.checkBody = (req, res, next) => {
+  console.log(req.body);
+  if (!req.body.name || !req.body.items) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Missing name or items'
+    });
+  }
+  next();
+};
 
 exports.getAllExpenses = (req, res) => {
   console.log(req.requestTime);
   res.status(200).json({
-    status: "success",
+    status: 'success',
     requestedAt: req.requestTime,
     results: expenses.length,
     data: {
@@ -18,14 +40,8 @@ exports.getExpense = (req, res) => {
   const id = req.params.id * 1;
   const expense = expenses.find(el => el.id === id);
 
-  if (!expense) {
-    return res.status(404).json({
-      status: "fail",
-      message: "Invalid id"
-    });
-  }
   res.status(200).json({
-    status: "success",
+    status: 'success',
     data: {
       expense
     }
@@ -39,7 +55,7 @@ exports.createExpense = (req, res) => {
 
   fs.writeFile(fileName, JSON.stringify(expenses), err => {
     res.status(201).json({
-      status: "success",
+      status: 'success',
       data: {
         expense: newExpense
       }
@@ -47,35 +63,16 @@ exports.createExpense = (req, res) => {
   });
 };
 exports.updateExpense = (req, res) => {
-  const id = req.params.id * 1;
-  const expense = expenses.find(el => el.id === id);
-
-  if (!expense) {
-    return res.status(404).json({
-      status: "fail",
-      message: "Invalid id"
-    });
-  }
   res.status(200).json({
-    status: "success",
+    status: 'success',
     data: {
-      expense: "Updated expense here"
+      expense: 'Updated expense here'
     }
   });
 };
 exports.deleteExpense = (req, res) => {
-  const id = req.params.id * 1;
-  const expense = expenses.find(el => el.id === id);
-
-  if (!expense) {
-    return res.status(404).json({
-      status: "fail",
-      message: "Invalid id"
-    });
-  }
   res.status(204).json({
-    status: "success",
+    status: 'success',
     data: null
   });
 };
-
