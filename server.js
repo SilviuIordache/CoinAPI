@@ -1,13 +1,15 @@
+/* eslint-disable no-console */
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const app = require('./app');
 
 dotenv.config({ path: './config.env' });
 
-if (process.env.NODE_ENV === 'development') {
-  process.env.DB = process.env.DB_LOCAL;
+let DB = process.env.DB.replace('<PASSWORD>', process.env.DB_PASSWORD);
+
+if (process.env.DB_TYPE === 'local') {
+  DB = process.env.DB_LOCAL;
 }
-const DB = process.env.DB.replace('<PASSWORD>', process.env.DB_PASSWORD);
 
 mongoose
   .connect(DB, {
@@ -16,7 +18,7 @@ mongoose
     useFindAndModify: false,
     useUnifiedTopology: true
   })
-  .then(() => console.log(`DB connection successful: ${process.env.DB}`));
+  .then(() => console.log(`DB connection successful: ${DB}`));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

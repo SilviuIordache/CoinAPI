@@ -3,11 +3,12 @@ const expController = require('./../controllers/expenseController');
 
 const router = express.Router();
 
-router.param('id', expController.checkID);
+// router.param('id', expController.checkID);
+
 router
   .route('/')
   .get(expController.getAllExpenses)
-  .post(expController.checkBody, expController.createExpense);
+  .post(expController.createExpense);
 
 router
   .route('/:id')
