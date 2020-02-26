@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator')
 const Schema = mongoose.Schema;
+const uniqueValidator = require('mongoose-unique-validator');
 const IncomeSchema = require('./incomeModel').IncomeSchema;
 const ExpenseSchema = require('./expenseModel').ExpenseSchema;
+const FundSchema = require('./fundModel').FundSchema;
+const TransactionSchema = require('./transactionModel').TransactionSchema;
 
 const userSchema = new Schema({
   username: { 
@@ -25,8 +27,16 @@ const userSchema = new Schema({
   expenses: {
     type: [ExpenseSchema],
     default: [],
+  },
+  funds: {
+    type: [FundSchema],
+    default: [],
+  },
+  transactions: {
+    type: [TransactionSchema],
+    default: [],
   }
-});
+}, { versionKey: false });
 userSchema.plugin(uniqueValidator);
 const User = mongoose.model('User', userSchema);
 module.exports = User;
