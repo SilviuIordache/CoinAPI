@@ -40,6 +40,22 @@ exports.getAllUsers = (req, res) => {
   });
 };
 
+exports.addIncome = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const newIncome = req.body;
+    user.incomes.push(newIncome);
+    user.save(() => {
+      console.log(`Added income '${newIncome.name}' to user: ${user.username}`)
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err
+    });
+  }
+};
+
 exports.updateUser = (req, res) => {
   res.status(500).json({
     status: 'error',

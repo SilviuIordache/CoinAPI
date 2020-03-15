@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const uniqueValidator = require('mongoose-unique-validator');
 const IncomeSchema = require('./incomeModel').IncomeSchema;
 const ExpenseSchema = require('./expenseModel').ExpenseSchema;
 const FundSchema = require('./fundModel').FundSchema;
 const TransactionSchema = require('./transactionModel').TransactionSchema;
+const uniqueValidator = require('mongoose-unique-validator');
 
 const userSchema = new Schema({
   username: { 
